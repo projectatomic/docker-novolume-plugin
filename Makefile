@@ -4,7 +4,7 @@ all:
 	go build  -o docker-novolume-plugin .
 
 install:
-	cp runc /usr/local/bin/runc
+	cp docker-novolume-plugin /usr/local/bin/docker-novolume-plugin
 
 clean:
 	rm docker-novolume-plugin
