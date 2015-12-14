@@ -3,9 +3,9 @@ package main
 import (
 	"regexp"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	docker "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/client/lib"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/runcom/dkauthz"
+	"github.com/Sirupsen/logrus"
+	docker "github.com/docker/docker/api/client/lib"
+	"github.com/runcom/dkauthz"
 )
 
 type novolume struct {
