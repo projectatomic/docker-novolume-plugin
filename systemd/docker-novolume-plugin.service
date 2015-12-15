@@ -6,7 +6,7 @@ Requires=docker.service
 
 [Service]
 # might need to set flags...
-ExecStart=/usr/local/bin/docker-novolume-plugin
+ExecStart=/usr/lib/docker/docker-novolume-plugin
 
 [Install]
 WantedBy=multi-user.target

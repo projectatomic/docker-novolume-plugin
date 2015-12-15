@@ -17,11 +17,12 @@ sudo make install
 ```
 Or:
 ```sh
-$ cp systemd/docker-novolume-plugin.service /lib/systemd/system/
 $ systemctl enable docker-novolume-plugin
 ```
 Running:
 -
+Specify --authz-plugin=docker-novolume-plugin docker daemon $OPTIONS (/etc/sysconfig/docker)
+
 The plugin must be started before `docker` (done automatically via systemd unit file).
 If you're not using the systemd unit file:
 ```sh
