@@ -1,0 +1,13 @@
+[Unit]
+Description=Docker No volumes authZ Plugin
+Documentation=https://github.com/runcom/docker-novolume-plugin
+Before=docker.service
+Requires=docker.service
+
+[Service]
+Type=notify
+# might need to set flags...
+ExecStart=/usr/local/bin/docker-novolume-plugin
+
+[Install]
+WantedBy=multi-user.target
