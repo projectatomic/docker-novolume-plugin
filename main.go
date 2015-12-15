@@ -17,6 +17,7 @@ var (
 	flPluginSocket = flag.String("socket", defaultPluginSocket, "Plugin's socket path")
 	// TODO(runcom): add tls option to connect to docker?
 	// TODO(runcom): add plugin tls option (need to learn more...)
+	// TODO(runcom): add config tls option based on Dan's suggestion to block based on AuthN
 )
 
 func main() {
