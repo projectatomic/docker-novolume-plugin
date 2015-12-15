@@ -26,5 +26,5 @@ The plugin must be started before `docker` (done automatically via systemd unit 
 If you're not using the systemd unit file:
 ```sh
 $ docker-novolume-plugin &
-$ systemctl restart docke
+$ systemctl restart docker
 ```
