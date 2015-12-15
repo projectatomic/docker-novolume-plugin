@@ -73,7 +73,7 @@ func main() {
 	novolume := newPlugin(client)
 	// TODO(runcom): parametrize this when the bin starts
 	h := dkauthz.NewHandler(novolume)
-	if err := h.ServeUnix("root", "/var/run/docker/plugins/novolume.sock"); err != nil {
+	if err := h.ServeUnix("root", "/var/run/docker/plugins/docker-novolume-plugin.sock"); err != nil {
 		logrus.Fatal(err)
 	}
 }
