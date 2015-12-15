@@ -26,5 +26,6 @@ The plugin must be started before `docker` (done automatically via systemd unit 
 If you're not using the systemd unit file:
 ```sh
 $ docker-novolume-plugin &
-$ systemctl restart docker
 ```
+Before (re)starting `docker` make sure you add `--authz-plugin=docker-novolume-plugin` to
+the `docker daemon` command line flags (either in the systemd unit file or manually).
