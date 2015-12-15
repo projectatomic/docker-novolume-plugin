@@ -5,7 +5,6 @@ Before=docker.service
 Requires=docker.service
 
 [Service]
-Type=notify
 # might need to set flags...
 ExecStart=/usr/local/bin/docker-novolume-plugin
 
