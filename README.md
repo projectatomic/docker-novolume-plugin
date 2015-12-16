@@ -1,6 +1,6 @@
 Docker No volumes Plugin
 =
-Building:
+Building
 -
 ```sh
 $ export GOPATH=~ # optional if you already have this
@@ -9,7 +9,7 @@ $ cd ~/src/github.com/runcom && git clone https://github.com/runcom/docker-novol
 $ cd docker-novolume-plugin
 $ make
 ```
-Installing:
+Installing
 -
 Either:
 ```
@@ -19,14 +19,17 @@ Or:
 ```sh
 $ systemctl enable docker-novolume-plugin
 ```
-Running:
+Running
 -
-Specify --authz-plugin=docker-novolume-plugin docker daemon $OPTIONS (/etc/sysconfig/docker)
-
+Specify `--authz-plugin=docker-novolume-plugin` in the `docker daemon` command line
+flags (either in the systemd unit file or `/etc/sysconfig/docker` under `$OPTIONS`
+or when manually starting the daemon)
 The plugin must be started before `docker` (done automatically via systemd unit file).
 If you're not using the systemd unit file:
 ```sh
 $ docker-novolume-plugin &
 ```
-Before (re)starting `docker` make sure you add `--authz-plugin=docker-novolume-plugin` to
-the `docker daemon` command line flags (either in the systemd unit file or manually).
+Just restart `docker` and you're good to go!
+License
+-
+MIT
