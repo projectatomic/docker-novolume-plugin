@@ -14,14 +14,14 @@ const (
 )
 
 func newTCPListener(
-	volumeDriverName string,
 	address string,
+	pluginName string,
 ) (net.Listener, string, error) {
 	listener, err := sockets.NewTCPSocket(address, nil)
 	if err != nil {
 		return nil, "", err
 	}
-	spec, err := writeSpec(volumeDriverName, listener.Addr().String())
+	spec, err := writeSpec(pluginName, listener.Addr().String())
 	if err != nil {
 		return nil, "", err
 	}

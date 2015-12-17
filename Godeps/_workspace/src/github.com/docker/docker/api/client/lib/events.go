@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/parsers/filters"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/timeutils"
+	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
+	timetypes "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/time"
 )
 
 // Events returns a stream of events in the daemon in a ReadCloser.
@@ -17,14 +17,14 @@ func (cli *Client) Events(options types.EventsOptions) (io.ReadCloser, error) {
 	ref := time.Now()
 
 	if options.Since != "" {
-		ts, err := timeutils.GetTimestamp(options.Since, ref)
+		ts, err := timetypes.GetTimestamp(options.Since, ref)
 		if err != nil {
 			return nil, err
 		}
 		query.Set("since", ts)
 	}
 	if options.Until != "" {
-		ts, err := timeutils.GetTimestamp(options.Until, ref)
+		ts, err := timetypes.GetTimestamp(options.Until, ref)
 		if err != nil {
 			return nil, err
 		}

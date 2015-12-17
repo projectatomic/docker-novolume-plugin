@@ -5,7 +5,7 @@ import (
 	"net/url"
 
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/parsers/filters"
+	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
 )
 
 // ImageList returns a list of images in the docker host.

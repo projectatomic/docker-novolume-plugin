@@ -6,8 +6,8 @@ import (
 
 	"github.com/docker/docker/daemon"
 	"github.com/docker/docker/daemon/exec"
+	"github.com/docker/docker/pkg/archive"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/archive"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/version"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
 )

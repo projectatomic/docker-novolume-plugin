@@ -12,7 +12,7 @@ var (
 )
 
 func newUnixListener(
-	volumeDriverName string,
+	pluginName string,
 	group string,
 ) (net.Listener, string, error) {
 	return nil, "", errOnlySupportedOnLinuxAndFreeBSD

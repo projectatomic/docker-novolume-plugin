@@ -10,16 +10,16 @@ import (
 	"time"
 
 	"github.com/docker/docker/daemon"
+	"github.com/docker/docker/utils"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/distribution/registry/api/errcode"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/httputils"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
+	timetypes "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/time"
 	derr "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/errors"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/ioutils"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/signal"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/timeutils"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/utils"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/golang.org/x/net/context"
 	"golang.org/x/net/websocket"
 )
@@ -101,7 +101,7 @@ func (s *containerRouter) getContainersLogs(ctx context.Context, w http.Response
 
 	var since time.Time
 	if r.Form.Get("since") != "" {
-		s, n, err := timeutils.ParseTimestamps(r.Form.Get("since"), 0)
+		s, n, err := timetypes.ParseTimestamps(r.Form.Get("since"), 0)
 		if err != nil {
 			return err
 		}

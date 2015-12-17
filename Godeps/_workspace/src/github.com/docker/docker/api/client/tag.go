@@ -4,10 +4,9 @@ import (
 	"errors"
 
 	Cli "github.com/docker/docker/cli"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/distribution/reference"
+	"github.com/docker/docker/reference"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
 	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/registry"
 )
 
 // CmdTag tags an image into a repository.
@@ -25,20 +24,13 @@ func (cli *DockerCli) CmdTag(args ...string) error {
 		return err
 	}
 
-	_, isDigested := ref.(reference.Digested)
-	if isDigested {
+	if _, isCanonical := ref.(reference.Canonical); isCanonical {
 		return errors.New("refusing to create a tag with a digest reference")
 	}
 
-	tag := ""
-	tagged, isTagged := ref.(reference.Tagged)
-	if isTagged {
+	var tag string
+	if tagged, isTagged := ref.(reference.NamedTagged); isTagged {
 		tag = tagged.Tag()
-	}
-
-	//Check if the given image name can be resolved
-	if err := registry.ValidateRepositoryName(ref); err != nil {
-		return err
 	}
 
 	options := types.ImageTagOptions{

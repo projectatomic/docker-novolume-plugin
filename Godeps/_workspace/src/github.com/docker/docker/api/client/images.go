@@ -7,13 +7,13 @@ import (
 	"time"
 
 	Cli "github.com/docker/docker/cli"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/distribution/reference"
+	"github.com/docker/docker/pkg/stringid"
+	"github.com/docker/docker/reference"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
+	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/opts"
 	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/parsers/filters"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/stringid"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/units"
+	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/go-units"
 )
 
 // CmdImages lists the images in a specified repository, or all top-level images if no repository is specified.
@@ -98,9 +98,9 @@ func (cli *DockerCli) CmdImages(args ...string) error {
 				repo = ref.Name()
 
 				switch x := ref.(type) {
-				case reference.Digested:
+				case reference.Canonical:
 					digest = x.Digest().String()
-				case reference.Tagged:
+				case reference.NamedTagged:
 					tag = x.Tag()
 				}
 			}

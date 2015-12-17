@@ -5,12 +5,13 @@ import (
 	"encoding/json"
 	"regexp"
 
+	dockerapi "github.com/docker/docker/api"
 	docker "github.com/docker/docker/api/client/lib"
 	"github.com/runcom/dkauthz"
 )
 
 func newPlugin(dockerHost string) (*novolume, error) {
-	client, err := docker.NewClient(dockerHost, nil, nil)
+	client, err := docker.NewClient(dockerHost, string(dockerapi.DefaultVersion), nil, nil)
 	if err != nil {
 		return nil, err
 	}

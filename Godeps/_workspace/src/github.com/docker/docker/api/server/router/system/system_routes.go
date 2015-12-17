@@ -5,15 +5,14 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/docker/docker/pkg/jsonmessage"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/httputils"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/cliconfig"
+	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
+	timetypes "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/time"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/ioutils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/jsonmessage"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/parsers/filters"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/timeutils"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
@@ -38,7 +37,7 @@ func (s *systemRouter) getInfo(ctx context.Context, w http.ResponseWriter, r *ht
 
 func (s *systemRouter) getVersion(ctx context.Context, w http.ResponseWriter, r *http.Request, vars map[string]string) error {
 	info := s.backend.SystemVersion()
-	info.APIVersion = api.Version
+	info.APIVersion = api.DefaultVersion
 
 	return httputils.WriteJSON(w, http.StatusOK, info)
 }
@@ -47,11 +46,11 @@ func (s *systemRouter) getEvents(ctx context.Context, w http.ResponseWriter, r *
 	if err := httputils.ParseForm(r); err != nil {
 		return err
 	}
-	since, sinceNano, err := timeutils.ParseTimestamps(r.Form.Get("since"), -1)
+	since, sinceNano, err := timetypes.ParseTimestamps(r.Form.Get("since"), -1)
 	if err != nil {
 		return err
 	}
-	until, untilNano, err := timeutils.ParseTimestamps(r.Form.Get("until"), -1)
+	until, untilNano, err := timetypes.ParseTimestamps(r.Form.Get("until"), -1)
 	if err != nil {
 		return err
 	}
@@ -116,7 +115,7 @@ func (s *systemRouter) getEvents(ctx context.Context, w http.ResponseWriter, r *
 }
 
 func (s *systemRouter) postAuth(ctx context.Context, w http.ResponseWriter, r *http.Request, vars map[string]string) error {
-	var config *cliconfig.AuthConfig
+	var config *types.AuthConfig
 	err := json.NewDecoder(r.Body).Decode(&config)
 	r.Body.Close()
 	if err != nil {

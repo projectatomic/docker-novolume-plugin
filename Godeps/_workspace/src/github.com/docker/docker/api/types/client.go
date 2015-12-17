@@ -5,8 +5,7 @@ import (
 	"io"
 	"net"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/cliconfig"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/parsers/filters"
+	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/ulimit"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
 )
@@ -135,7 +134,7 @@ type ImageBuildOptions struct {
 	Dockerfile     string
 	Ulimits        []*ulimit.Ulimit
 	BuildArgs      []string
-	AuthConfigs    map[string]cliconfig.AuthConfig
+	AuthConfigs    map[string]AuthConfig
 	Context        io.Reader
 }
 

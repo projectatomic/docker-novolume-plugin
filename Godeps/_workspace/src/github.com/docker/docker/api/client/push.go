@@ -2,17 +2,15 @@ package client
 
 import (
 	"errors"
-	"fmt"
 	"io"
 
 	Cli "github.com/docker/docker/cli"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/distribution/reference"
+	"github.com/docker/docker/pkg/jsonmessage"
+	"github.com/docker/docker/reference"
+	"github.com/docker/docker/registry"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/client/lib"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/cliconfig"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/jsonmessage"
 	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/registry"
 )
 
 // CmdPush pushes an image or repository to the registry.
@@ -32,9 +30,9 @@ func (cli *DockerCli) CmdPush(args ...string) error {
 
 	var tag string
 	switch x := ref.(type) {
-	case reference.Digested:
+	case reference.Canonical:
 		return errors.New("cannot push a digest reference")
-	case reference.Tagged:
+	case reference.NamedTagged:
 		tag = x.Tag()
 	}
 
@@ -45,17 +43,6 @@ func (cli *DockerCli) CmdPush(args ...string) error {
 	}
 	// Resolve the Auth config relevant for this server
 	authConfig := registry.ResolveAuthConfig(cli.configFile.AuthConfigs, repoInfo.Index)
-	// If we're not using a custom registry, we know the restrictions
-	// applied to repository names and can warn the user in advance.
-	// Custom repositories can have different rules, and we must also
-	// allow pushing by image ID.
-	if repoInfo.Official {
-		username := authConfig.Username
-		if username == "" {
-			username = "<user>"
-		}
-		return fmt.Errorf("You cannot push a \"root\" repository. Please rename your repository to <user>/<repo> (ex: %s/%s)", username, repoInfo.LocalName)
-	}
 
 	requestPrivilege := cli.registryAuthenticationPrivilegedFunc(repoInfo.Index, "push")
 	if isTrusted() {
@@ -65,8 +52,8 @@ func (cli *DockerCli) CmdPush(args ...string) error {
 	return cli.imagePushPrivileged(authConfig, ref.Name(), tag, cli.out, requestPrivilege)
 }
 
-func (cli *DockerCli) imagePushPrivileged(authConfig cliconfig.AuthConfig, imageID, tag string, outputStream io.Writer, requestPrivilege lib.RequestPrivilegeFunc) error {
-	encodedAuth, err := authConfig.EncodeToBase64()
+func (cli *DockerCli) imagePushPrivileged(authConfig types.AuthConfig, imageID, tag string, outputStream io.Writer, requestPrivilege lib.RequestPrivilegeFunc) error {
+	encodedAuth, err := encodeAuthToBase64(authConfig)
 	if err != nil {
 		return err
 	}

@@ -9,11 +9,11 @@ import (
 	"strings"
 
 	Cli "github.com/docker/docker/cli"
+	"github.com/docker/docker/pkg/term"
+	"github.com/docker/docker/registry"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/client/lib"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/cliconfig"
+	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
 	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/term"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/registry"
 )
 
 // CmdLogin logs in or registers a user to a Docker registry service.
@@ -63,7 +63,7 @@ func (cli *DockerCli) CmdLogin(args ...string) error {
 
 	authconfig, ok := cli.configFile.AuthConfigs[serverAddress]
 	if !ok {
-		authconfig = cliconfig.AuthConfig{}
+		authconfig = types.AuthConfig{}
 	}
 
 	if username == "" {

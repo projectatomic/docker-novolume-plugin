@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	Cli "github.com/docker/docker/cli"
+	"github.com/docker/docker/registry"
 	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/registry"
 )
 
 // CmdLogout logs a user out from a Docker registry.

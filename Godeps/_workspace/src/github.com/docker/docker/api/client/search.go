@@ -8,10 +8,11 @@ import (
 	"text/tabwriter"
 
 	Cli "github.com/docker/docker/cli"
+	"github.com/docker/docker/registry"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
+	registrytypes "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/registry"
 	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/stringutils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/registry"
 )
 
 // CmdSearch searches the Docker Hub for images.
@@ -38,7 +39,7 @@ func (cli *DockerCli) CmdSearch(args ...string) error {
 	authConfig := registry.ResolveAuthConfig(cli.configFile.AuthConfigs, indexInfo)
 	requestPrivilege := cli.registryAuthenticationPrivilegedFunc(indexInfo, "search")
 
-	encodedAuth, err := authConfig.EncodeToBase64()
+	encodedAuth, err := encodeAuthToBase64(authConfig)
 	if err != nil {
 		return err
 	}
@@ -83,7 +84,7 @@ func (cli *DockerCli) CmdSearch(args ...string) error {
 }
 
 // SearchResultsByStars sorts search results in descending order by number of stars.
-type searchResultsByStars []registry.SearchResult
+type searchResultsByStars []registrytypes.SearchResult
 
 func (r searchResultsByStars) Len() int           { return len(r) }
 func (r searchResultsByStars) Swap(i, j int)      { r[i], r[j] = r[j], r[i] }

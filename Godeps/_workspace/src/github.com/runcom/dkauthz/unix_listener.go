@@ -15,10 +15,10 @@ const (
 )
 
 func newUnixListener(
-	volumeDriverName string,
+	pluginName string,
 	group string,
 ) (net.Listener, string, error) {
-	path, err := fullSocketAddress(volumeDriverName)
+	path, err := fullSocketAddress(pluginName)
 	if err != nil {
 		return nil, "", err
 	}

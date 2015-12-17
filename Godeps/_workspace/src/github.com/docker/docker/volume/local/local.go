@@ -11,9 +11,9 @@ import (
 	"path/filepath"
 	"sync"
 
+	"github.com/docker/docker/pkg/idtools"
+	"github.com/docker/docker/utils"
 	derr "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/errors"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/idtools"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/utils"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/volume"
 )
 

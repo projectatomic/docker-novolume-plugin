@@ -6,11 +6,11 @@ import (
 	"time"
 
 	Cli "github.com/docker/docker/cli"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api"
+	"github.com/docker/docker/dockerversion"
+	"github.com/docker/docker/utils"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/dockerversion"
 	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/utils"
+	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/version"
 )
 
 var versionTemplate = `Client:
@@ -57,7 +57,7 @@ func (cli *DockerCli) CmdVersion(args ...string) (err error) {
 	vd := types.VersionResponse{
 		Client: &types.Version{
 			Version:      dockerversion.Version,
-			APIVersion:   api.Version,
+			APIVersion:   version.Version(cli.client.ClientVersion()),
 			GoVersion:    runtime.Version(),
 			GitCommit:    dockerversion.GitCommit,
 			BuildTime:    dockerversion.BuildTime,

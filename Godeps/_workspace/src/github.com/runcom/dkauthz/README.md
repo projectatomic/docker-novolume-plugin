@@ -32,7 +32,7 @@ This library is designed to be integrated in your program.
 
 ## Full example plugins
 
-- https://github.com/runcom/dkauthz/tree/master/cmd/novolume (still WIP)
+- https://github.com/runcom/docker-novolume-plugin
 
 ## License
 

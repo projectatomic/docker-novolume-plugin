@@ -5,9 +5,9 @@ import (
 	"time"
 
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/network"
+	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/registry"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/nat"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/version"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/registry"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
 )
 
@@ -140,6 +140,7 @@ type Container struct {
 	HostConfig struct {
 		NetworkMode string `json:",omitempty"`
 	}
+	NetworkSettings *SummaryNetworkSettings
 }
 
 // CopyConfig contains request body of Remote API:
@@ -303,6 +304,12 @@ type NetworkSettings struct {
 	Networks map[string]*network.EndpointSettings
 }
 
+// SummaryNetworkSettings provides a summary of container's networks
+// in /containers/json
+type SummaryNetworkSettings struct {
+	Networks map[string]*network.EndpointSettings
+}
+
 // NetworkSettingsBase holds basic information about networks
 type NetworkSettingsBase struct {
 	Bridge                 string
@@ -338,6 +345,7 @@ type MountPoint struct {
 	Driver      string `json:",omitempty"`
 	Mode        string
 	RW          bool
+	Propagation string
 }
 
 // Volume represents the configuration of a volume for the remote API

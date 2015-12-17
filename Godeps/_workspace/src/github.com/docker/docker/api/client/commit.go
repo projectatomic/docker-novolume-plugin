@@ -6,11 +6,10 @@ import (
 	"fmt"
 
 	Cli "github.com/docker/docker/cli"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/distribution/reference"
+	"github.com/docker/docker/reference"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/opts"
 	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/registry"
 	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
 )
 
@@ -44,16 +43,13 @@ func (cli *DockerCli) CmdCommit(args ...string) error {
 		if err != nil {
 			return err
 		}
-		if err := registry.ValidateRepositoryName(ref); err != nil {
-			return err
-		}
 
 		repositoryName = ref.Name()
 
 		switch x := ref.(type) {
-		case reference.Digested:
+		case reference.Canonical:
 			return errors.New("cannot commit to digest reference")
-		case reference.Tagged:
+		case reference.NamedTagged:
 			tag = x.Tag()
 		}
 	}
