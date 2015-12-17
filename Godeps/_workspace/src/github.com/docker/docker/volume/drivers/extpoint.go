@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/plugins"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/volume"
+	"github.com/docker/docker/pkg/plugins"
+	"github.com/docker/docker/volume"
 )
 
 // currently created by hand. generation tool would generate this like:

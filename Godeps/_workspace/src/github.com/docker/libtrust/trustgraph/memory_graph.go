@@ -3,7 +3,7 @@ package trustgraph
 import (
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/libtrust"
+	"github.com/docker/libtrust"
 )
 
 type grantNode struct {

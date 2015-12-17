@@ -5,12 +5,12 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
+	"github.com/docker/docker/opts"
+	flag "github.com/docker/docker/pkg/mflag"
 	"github.com/docker/docker/reference"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/opts"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
+	"github.com/docker/docker/runconfig"
 )
 
 // CmdCommit creates a new image from a container's changes.

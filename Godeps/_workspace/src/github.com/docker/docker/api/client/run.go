@@ -7,15 +7,15 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
+	derr "github.com/docker/docker/errors"
+	"github.com/docker/docker/opts"
 	"github.com/docker/docker/pkg/promise"
+	"github.com/docker/docker/pkg/signal"
+	"github.com/docker/docker/runconfig"
 	"github.com/docker/libnetwork/resolvconf/dns"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	derr "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/errors"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/opts"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/signal"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
 )
 
 func (cid *cidFile) Close() error {

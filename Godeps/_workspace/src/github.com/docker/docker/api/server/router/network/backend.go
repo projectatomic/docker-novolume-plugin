@@ -1,7 +1,7 @@
 package network
 
 import (
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/network"
+	"github.com/docker/docker/api/types/network"
 
 	"github.com/docker/libnetwork"
 )

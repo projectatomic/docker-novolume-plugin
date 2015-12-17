@@ -9,9 +9,9 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/pkg/sockets"
 	"github.com/docker/libnetwork/portallocator"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/sockets"
 
 	systemdActivation "github.com/coreos/go-systemd/activation"
 )

@@ -8,14 +8,14 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/api"
+	"github.com/docker/docker/api/server/httputils"
 	"github.com/docker/docker/dockerversion"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/httputils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/errors"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/authorization"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/version"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/golang.org/x/net/context"
+	"github.com/docker/docker/errors"
+	"github.com/docker/docker/pkg/authorization"
+	"github.com/docker/docker/pkg/version"
+	"golang.org/x/net/context"
 )
 
 // middleware is an adapter to allow the use of ordinary functions as Docker API filters.

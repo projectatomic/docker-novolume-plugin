@@ -7,14 +7,14 @@ import (
 	"os"
 	"runtime"
 
+	"github.com/docker/docker/api"
+	"github.com/docker/docker/api/client/lib"
 	"github.com/docker/docker/cli"
 	"github.com/docker/docker/cliconfig"
 	"github.com/docker/docker/dockerversion"
+	"github.com/docker/docker/opts"
 	"github.com/docker/docker/pkg/term"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/client/lib"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/opts"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/tlsconfig"
+	"github.com/docker/docker/pkg/tlsconfig"
 )
 
 // DockerCli represents the docker command line client.

@@ -8,7 +8,7 @@ import (
 	"text/tabwriter"
 	"text/template"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types"
 )
 
 const (

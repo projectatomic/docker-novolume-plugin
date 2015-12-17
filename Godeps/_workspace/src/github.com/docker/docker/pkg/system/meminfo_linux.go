@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/go-units"
+	"github.com/docker/go-units"
 )
 
 // ReadMemInfo retrieves memory statistics of the host system and returns a

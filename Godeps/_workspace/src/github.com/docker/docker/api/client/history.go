@@ -8,10 +8,10 @@ import (
 	"time"
 
 	Cli "github.com/docker/docker/cli"
+	flag "github.com/docker/docker/pkg/mflag"
 	"github.com/docker/docker/pkg/stringid"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/stringutils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/go-units"
+	"github.com/docker/docker/pkg/stringutils"
+	"github.com/docker/go-units"
 )
 
 // CmdHistory shows the history of an image.

@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	derr "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/errors"
+	derr "github.com/docker/docker/errors"
 )
 
 // read-write modes

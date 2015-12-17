@@ -2,9 +2,9 @@
 package v1p20
 
 import (
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/nat"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/pkg/nat"
+	"github.com/docker/docker/runconfig"
 )
 
 // ContainerJSON is a backcompatibility struct for the API 1.20

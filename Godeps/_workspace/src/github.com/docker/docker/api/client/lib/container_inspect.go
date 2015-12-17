@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types"
 )
 
 // ContainerInspect returns the container information.

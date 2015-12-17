@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/broadcaster"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/ioutils"
+	"github.com/docker/docker/pkg/broadcaster"
+	"github.com/docker/docker/pkg/ioutils"
 )
 
 // StreamConfig holds information about I/O streams managed together.

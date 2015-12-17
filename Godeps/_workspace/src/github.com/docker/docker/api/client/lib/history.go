@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/url"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types"
 )
 
 // ImageHistory returns the changes in an image in history format.

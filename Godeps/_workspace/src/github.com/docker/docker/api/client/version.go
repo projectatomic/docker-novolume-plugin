@@ -5,12 +5,12 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
 	"github.com/docker/docker/dockerversion"
+	flag "github.com/docker/docker/pkg/mflag"
+	"github.com/docker/docker/pkg/version"
 	"github.com/docker/docker/utils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/version"
 )
 
 var versionTemplate = `Client:

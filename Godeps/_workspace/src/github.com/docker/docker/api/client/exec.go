@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
 	"github.com/docker/docker/pkg/promise"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
+	"github.com/docker/docker/runconfig"
 )
 
 // CmdExec runs a command in a running container.

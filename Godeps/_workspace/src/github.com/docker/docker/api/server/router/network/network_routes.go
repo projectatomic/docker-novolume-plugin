@@ -5,16 +5,16 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/golang.org/x/net/context"
+	"golang.org/x/net/context"
 
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/api/server/httputils"
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/filters"
+	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/daemon"
+	"github.com/docker/docker/runconfig"
 	"github.com/docker/libnetwork"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/httputils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/network"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
 )
 
 func (n *networkRouter) getNetworksList(ctx context.Context, w http.ResponseWriter, r *http.Request, vars map[string]string) error {

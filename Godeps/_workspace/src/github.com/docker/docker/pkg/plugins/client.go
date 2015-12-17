@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/sockets"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/tlsconfig"
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/pkg/sockets"
+	"github.com/docker/docker/pkg/tlsconfig"
 )
 
 const (

@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	derr "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/errors"
+	"github.com/Sirupsen/logrus"
+	derr "github.com/docker/docker/errors"
 )
 
 // read-write modes

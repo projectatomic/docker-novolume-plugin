@@ -1,6 +1,6 @@
 package router
 
-import "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/httputils"
+import "github.com/docker/docker/api/server/httputils"
 
 // Router defines an interface to specify a group of routes to add the the docker server.
 type Router interface {

@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/golang.org/x/net/context"
+	"golang.org/x/net/context"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/distribution/registry/api/errcode"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/version"
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/distribution/registry/api/errcode"
+	"github.com/docker/docker/api"
+	"github.com/docker/docker/pkg/version"
 )
 
 // APIVersionKey is the client's requested API version.

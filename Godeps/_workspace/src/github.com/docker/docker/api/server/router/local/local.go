@@ -1,9 +1,9 @@
 package local
 
 import (
+	"github.com/docker/docker/api/server/httputils"
+	dkrouter "github.com/docker/docker/api/server/router"
 	"github.com/docker/docker/daemon"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/httputils"
-	dkrouter "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/router"
 )
 
 // router is a docker router that talks with the local docker daemon.

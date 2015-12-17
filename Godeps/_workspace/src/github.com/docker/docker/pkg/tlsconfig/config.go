@@ -12,7 +12,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
+	"github.com/Sirupsen/logrus"
 )
 
 // Options represents the information needed to create client and server TLS configurations.

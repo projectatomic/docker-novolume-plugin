@@ -3,7 +3,7 @@ package opts
 import (
 	"fmt"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/ulimit"
+	"github.com/docker/docker/pkg/ulimit"
 )
 
 // UlimitOpt defines a map of Ulimits

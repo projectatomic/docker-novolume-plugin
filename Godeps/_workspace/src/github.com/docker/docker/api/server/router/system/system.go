@@ -1,8 +1,8 @@
 package system
 
 import (
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/router"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/router/local"
+	"github.com/docker/docker/api/server/router"
+	"github.com/docker/docker/api/server/router/local"
 )
 
 // systemRouter is a Router that provides information about

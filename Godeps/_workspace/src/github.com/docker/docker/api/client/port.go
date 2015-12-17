@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	Cli "github.com/docker/docker/cli"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/nat"
+	flag "github.com/docker/docker/pkg/mflag"
+	"github.com/docker/docker/pkg/nat"
 )
 
 // CmdPort lists port mappings for a container.

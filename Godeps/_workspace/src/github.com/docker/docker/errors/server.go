@@ -3,7 +3,7 @@ package errors
 import (
 	"net/http"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/distribution/registry/api/errcode"
+	"github.com/docker/distribution/registry/api/errcode"
 )
 
 var (

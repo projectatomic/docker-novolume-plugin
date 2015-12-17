@@ -4,13 +4,13 @@ import (
 	"errors"
 	"io"
 
+	"github.com/docker/docker/api/client/lib"
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
 	"github.com/docker/docker/pkg/jsonmessage"
+	flag "github.com/docker/docker/pkg/mflag"
 	"github.com/docker/docker/reference"
 	"github.com/docker/docker/registry"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/client/lib"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
 )
 
 // CmdPush pushes an image or repository to the registry.

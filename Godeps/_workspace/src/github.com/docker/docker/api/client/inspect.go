@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"text/template"
 
+	"github.com/docker/docker/api/client/inspect"
+	"github.com/docker/docker/api/client/lib"
 	Cli "github.com/docker/docker/cli"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/client/inspect"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/client/lib"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
+	flag "github.com/docker/docker/pkg/mflag"
 )
 
 var funcMap = template.FuncMap{

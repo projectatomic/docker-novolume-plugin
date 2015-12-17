@@ -7,7 +7,7 @@ import (
 	"sync/atomic"
 	"syscall"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
+	"github.com/Sirupsen/logrus"
 )
 
 // Trap sets up a simplified signal "trap", appropriate for common

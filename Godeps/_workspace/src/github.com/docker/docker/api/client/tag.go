@@ -3,10 +3,10 @@ package client
 import (
 	"errors"
 
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
+	flag "github.com/docker/docker/pkg/mflag"
 	"github.com/docker/docker/reference"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
 )
 
 // CmdTag tags an image into a repository.

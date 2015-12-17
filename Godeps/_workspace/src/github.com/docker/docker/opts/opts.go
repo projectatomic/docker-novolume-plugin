@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/blkiodev"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/go-units"
+	"github.com/docker/docker/pkg/blkiodev"
+	"github.com/docker/go-units"
 )
 
 var (

@@ -5,9 +5,9 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
-	timetypes "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/time"
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/filters"
+	timetypes "github.com/docker/docker/api/types/time"
 )
 
 // Events returns a stream of events in the daemon in a ReadCloser.

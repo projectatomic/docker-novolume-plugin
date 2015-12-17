@@ -5,8 +5,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/runconfig"
 )
 
 // ContainerCreate creates a new container based in the given configuration.

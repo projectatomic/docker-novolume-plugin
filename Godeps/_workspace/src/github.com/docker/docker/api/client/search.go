@@ -7,12 +7,12 @@ import (
 	"strings"
 	"text/tabwriter"
 
+	"github.com/docker/docker/api/types"
+	registrytypes "github.com/docker/docker/api/types/registry"
 	Cli "github.com/docker/docker/cli"
+	flag "github.com/docker/docker/pkg/mflag"
+	"github.com/docker/docker/pkg/stringutils"
 	"github.com/docker/docker/registry"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	registrytypes "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/registry"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/stringutils"
 )
 
 // CmdSearch searches the Docker Hub for images.

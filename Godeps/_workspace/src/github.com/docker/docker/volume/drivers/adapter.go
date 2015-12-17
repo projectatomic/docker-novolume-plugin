@@ -1,6 +1,6 @@
 package volumedrivers
 
-import "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/volume"
+import "github.com/docker/docker/volume"
 
 type volumeDriverAdapter struct {
 	name  string

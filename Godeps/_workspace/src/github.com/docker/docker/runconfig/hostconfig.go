@@ -5,10 +5,10 @@ import (
 	"io"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/blkiodev"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/nat"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/stringutils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/ulimit"
+	"github.com/docker/docker/pkg/blkiodev"
+	"github.com/docker/docker/pkg/nat"
+	"github.com/docker/docker/pkg/stringutils"
+	"github.com/docker/docker/pkg/ulimit"
 )
 
 // KeyValuePair is a structure that hold a value for a key.

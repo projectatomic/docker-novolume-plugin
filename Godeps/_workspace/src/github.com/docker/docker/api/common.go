@@ -8,11 +8,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/system"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/version"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/libtrust"
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/pkg/system"
+	"github.com/docker/docker/pkg/version"
+	"github.com/docker/libtrust"
 )
 
 // Common constants for daemon and client.

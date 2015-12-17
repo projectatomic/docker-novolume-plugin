@@ -3,11 +3,11 @@ package network
 import (
 	"net/http"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/httputils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/router"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/router/local"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/errors"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/golang.org/x/net/context"
+	"github.com/docker/docker/api/server/httputils"
+	"github.com/docker/docker/api/server/router"
+	"github.com/docker/docker/api/server/router/local"
+	"github.com/docker/docker/errors"
+	"golang.org/x/net/context"
 )
 
 // networkRouter is a router to talk with the network controller

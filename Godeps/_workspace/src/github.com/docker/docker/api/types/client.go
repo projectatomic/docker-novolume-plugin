@@ -5,9 +5,9 @@ import (
 	"io"
 	"net"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/ulimit"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
+	"github.com/docker/docker/api/types/filters"
+	"github.com/docker/docker/pkg/ulimit"
+	"github.com/docker/docker/runconfig"
 )
 
 // ContainerAttachOptions holds parameters to attach to a container.

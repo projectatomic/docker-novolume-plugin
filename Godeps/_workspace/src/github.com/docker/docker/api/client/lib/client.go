@@ -7,8 +7,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/sockets"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/tlsconfig"
+	"github.com/docker/docker/pkg/sockets"
+	"github.com/docker/docker/pkg/tlsconfig"
 )
 
 // Client is the API client that performs all operations

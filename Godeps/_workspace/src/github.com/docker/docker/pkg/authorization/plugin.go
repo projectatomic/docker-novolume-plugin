@@ -1,8 +1,8 @@
 package authorization
 
 import (
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/plugins"
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/pkg/plugins"
 )
 
 // Plugin allows third party plugins to authorize requests and responses

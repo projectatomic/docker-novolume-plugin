@@ -9,13 +9,13 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/api/client/lib"
+	"github.com/docker/docker/api/types"
+	registrytypes "github.com/docker/docker/api/types/registry"
+	"github.com/docker/docker/pkg/signal"
 	"github.com/docker/docker/pkg/term"
 	"github.com/docker/docker/registry"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/client/lib"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	registrytypes "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/registry"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/signal"
 )
 
 // encodeAuthToBase64 serializes the auth configuration as JSON base64 payload

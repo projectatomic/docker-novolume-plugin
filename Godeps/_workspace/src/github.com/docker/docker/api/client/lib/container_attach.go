@@ -3,7 +3,7 @@ package lib
 import (
 	"net/url"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types"
 )
 
 // ContainerAttach attaches a connection to a container in the server.

@@ -5,7 +5,7 @@ import (
 
 	Cli "github.com/docker/docker/cli"
 	"github.com/docker/docker/pkg/archive"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
+	flag "github.com/docker/docker/pkg/mflag"
 )
 
 // CmdDiff shows changes on a container's filesystem.

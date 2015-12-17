@@ -92,7 +92,7 @@ import (
 	"text/tabwriter"
 	"time"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/homedir"
+	"github.com/docker/docker/pkg/homedir"
 )
 
 // ErrHelp is the error returned if the flag -help is invoked but no such flag is defined.

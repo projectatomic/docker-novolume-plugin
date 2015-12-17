@@ -8,12 +8,12 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/docker/docker/api/client/lib"
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
+	flag "github.com/docker/docker/pkg/mflag"
 	"github.com/docker/docker/pkg/term"
 	"github.com/docker/docker/registry"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/client/lib"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
 )
 
 // CmdLogin logs in or registers a user to a Docker registry service.

@@ -5,7 +5,7 @@ package types
 // docker daemon).
 
 import (
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
+	"github.com/docker/docker/runconfig"
 )
 
 // ContainerRmConfig holds arguments for the container remove

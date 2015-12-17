@@ -6,7 +6,7 @@ import (
 	"text/tabwriter"
 
 	Cli "github.com/docker/docker/cli"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
+	flag "github.com/docker/docker/pkg/mflag"
 )
 
 // CmdTop displays the running processes of a container.

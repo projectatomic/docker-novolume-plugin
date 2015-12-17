@@ -1,7 +1,7 @@
 package runconfig
 
 import (
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
+	flag "github.com/docker/docker/pkg/mflag"
 )
 
 // ExecConfig is a small subset of the Config struct that hold the configuration

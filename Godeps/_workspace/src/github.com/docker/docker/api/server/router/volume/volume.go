@@ -1,8 +1,8 @@
 package volume
 
 import (
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/router"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/router/local"
+	"github.com/docker/docker/api/server/router"
+	"github.com/docker/docker/api/server/router/local"
 )
 
 // volumeRouter is a router to talk with the volumes controller

@@ -3,10 +3,10 @@ package store
 import (
 	"sync"
 
+	"github.com/Sirupsen/logrus"
 	"github.com/docker/docker/pkg/locker"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/volume"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/volume/drivers"
+	"github.com/docker/docker/volume"
+	"github.com/docker/docker/volume/drivers"
 )
 
 // New initializes a VolumeStore to keep

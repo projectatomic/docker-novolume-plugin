@@ -10,10 +10,10 @@ import (
 	"text/tabwriter"
 	"time"
 
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
 	"github.com/docker/docker/pkg/jsonmessage"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/go-units"
+	"github.com/docker/go-units"
 )
 
 type containerStats struct {

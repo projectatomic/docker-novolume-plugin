@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/parsers"
+	"github.com/docker/docker/pkg/parsers"
 )
 
 const (

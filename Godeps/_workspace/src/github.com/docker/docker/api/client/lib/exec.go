@@ -3,8 +3,8 @@ package lib
 import (
 	"encoding/json"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/runconfig"
 )
 
 // ContainerExecCreate creates a new exec configuration to run an exec process.

@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/opencontainers/runc/libcontainer/user"
+	"github.com/Sirupsen/logrus"
+	"github.com/opencontainers/runc/libcontainer/user"
 )
 
 // NewUnixSocket creates a unix socket with the specified path and group.

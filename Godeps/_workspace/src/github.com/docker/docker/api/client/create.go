@@ -5,13 +5,13 @@ import (
 	"io"
 	"os"
 
+	"github.com/docker/docker/api/client/lib"
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
 	"github.com/docker/docker/pkg/jsonmessage"
 	"github.com/docker/docker/reference"
 	"github.com/docker/docker/registry"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/client/lib"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
+	"github.com/docker/docker/runconfig"
 )
 
 func (cli *DockerCli) pullImage(image string) error {

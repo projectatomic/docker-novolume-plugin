@@ -3,7 +3,7 @@ package lib
 import (
 	"encoding/json"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types"
 )
 
 // ServerVersion returns information of the docker client and server host.

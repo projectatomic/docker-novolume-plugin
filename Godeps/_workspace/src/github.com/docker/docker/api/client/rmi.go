@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/url"
 
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
+	flag "github.com/docker/docker/pkg/mflag"
 )
 
 // CmdRmi removes all images with the specified name(s).

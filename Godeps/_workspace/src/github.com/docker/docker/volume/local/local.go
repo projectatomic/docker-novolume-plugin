@@ -11,10 +11,10 @@ import (
 	"path/filepath"
 	"sync"
 
+	derr "github.com/docker/docker/errors"
 	"github.com/docker/docker/pkg/idtools"
 	"github.com/docker/docker/utils"
-	derr "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/errors"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/volume"
+	"github.com/docker/docker/volume"
 )
 
 // VolumeDataPathName is the name of the directory where the volume data is stored.

@@ -6,12 +6,12 @@ import (
 	"os"
 	"strings"
 
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
+	flag "github.com/docker/docker/pkg/mflag"
 	"github.com/docker/docker/pkg/promise"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/signal"
+	"github.com/docker/docker/pkg/signal"
 )
 
 func (cli *DockerCli) forwardAllSignals(cid string) chan os.Signal {

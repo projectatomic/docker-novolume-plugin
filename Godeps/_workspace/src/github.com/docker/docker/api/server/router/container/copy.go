@@ -9,9 +9,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/httputils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/golang.org/x/net/context"
+	"github.com/docker/docker/api/server/httputils"
+	"github.com/docker/docker/api/types"
+	"golang.org/x/net/context"
 )
 
 // postContainersCopy is deprecated in favor of getContainersArchive.

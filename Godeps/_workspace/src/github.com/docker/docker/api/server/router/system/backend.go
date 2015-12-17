@@ -1,9 +1,9 @@
 package system
 
 import (
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/pkg/jsonmessage"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
 )
 
 // Backend is the methods that need to be implemented to provide

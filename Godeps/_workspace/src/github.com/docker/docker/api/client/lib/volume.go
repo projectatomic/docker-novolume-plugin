@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/filters"
 )
 
 // VolumeList returns the volumes configured in the docker host.

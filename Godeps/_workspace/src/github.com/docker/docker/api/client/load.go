@@ -5,7 +5,7 @@ import (
 	"os"
 
 	Cli "github.com/docker/docker/cli"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
+	flag "github.com/docker/docker/pkg/mflag"
 )
 
 // CmdLoad loads an image from a tar archive.

@@ -3,7 +3,7 @@ package volumetestutils
 import (
 	"fmt"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/volume"
+	"github.com/docker/docker/volume"
 )
 
 // NoopVolume is a volume that doesn't perform any operation

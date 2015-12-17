@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"io"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/golang.org/x/net/context"
+	"golang.org/x/net/context"
 )
 
 type readCloserWrapper struct {

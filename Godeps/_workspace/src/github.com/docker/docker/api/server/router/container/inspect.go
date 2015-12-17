@@ -3,8 +3,8 @@ package container
 import (
 	"net/http"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/httputils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/golang.org/x/net/context"
+	"github.com/docker/docker/api/server/httputils"
+	"golang.org/x/net/context"
 )
 
 // getContainersByName inspects containers configuration and serializes it as json.

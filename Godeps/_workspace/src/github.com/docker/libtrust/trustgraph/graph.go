@@ -1,6 +1,6 @@
 package trustgraph
 
-import "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/libtrust"
+import "github.com/docker/libtrust"
 
 // TrustGraph represents a graph of authorization mapping
 // public keys to nodes and grants between nodes.

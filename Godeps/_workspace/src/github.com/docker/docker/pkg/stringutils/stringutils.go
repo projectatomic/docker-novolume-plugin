@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/random"
+	"github.com/docker/docker/pkg/random"
 )
 
 // GenerateRandomAlphaOnlyString generates an alphabetical random string with length n.

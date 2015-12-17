@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"text/tabwriter"
 
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/filters"
 	Cli "github.com/docker/docker/cli"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/filters"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/opts"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
+	"github.com/docker/docker/opts"
+	flag "github.com/docker/docker/pkg/mflag"
 )
 
 // CmdVolume is the parent subcommand for all volume commands

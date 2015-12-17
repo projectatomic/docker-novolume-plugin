@@ -3,7 +3,7 @@ package lib
 import (
 	"encoding/json"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types"
 )
 
 // ContainerWait pauses execution util a container is exits.

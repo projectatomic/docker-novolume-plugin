@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/api/server/httputils"
+	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/pkg/stdcopy"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/httputils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/runconfig"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/golang.org/x/net/context"
+	"github.com/docker/docker/runconfig"
+	"golang.org/x/net/context"
 )
 
 func (s *containerRouter) getExecByID(ctx context.Context, w http.ResponseWriter, r *http.Request, vars map[string]string) error {

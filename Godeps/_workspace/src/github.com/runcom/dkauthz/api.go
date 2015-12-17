@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/authorization"
+	"github.com/docker/docker/pkg/authorization"
 )
 
 const (

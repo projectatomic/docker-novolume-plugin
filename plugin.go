@@ -11,7 +11,7 @@ import (
 )
 
 func newPlugin(dockerHost string) (*novolume, error) {
-	client, err := docker.NewClient(dockerHost, string(dockerapi.DefaultVersion), nil, nil)
+	client, err := docker.NewClient(dockerHost, dockerapi.DefaultVersion.String(), nil, nil)
 	if err != nil {
 		return nil, err
 	}

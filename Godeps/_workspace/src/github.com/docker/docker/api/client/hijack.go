@@ -4,10 +4,10 @@ import (
 	"io"
 	"os"
 
+	"github.com/Sirupsen/logrus"
+	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/pkg/stdcopy"
 	"github.com/docker/docker/pkg/term"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
 )
 
 func (cli *DockerCli) holdHijackedConnection(setRawTerminal bool, inputStream io.ReadCloser, outputStream, errorStream io.Writer, resp types.HijackedResponse) error {

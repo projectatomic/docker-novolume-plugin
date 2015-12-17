@@ -6,12 +6,12 @@ import (
 	"strings"
 	"text/tabwriter"
 
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/network"
 	Cli "github.com/docker/docker/cli"
+	"github.com/docker/docker/opts"
+	flag "github.com/docker/docker/pkg/mflag"
 	"github.com/docker/docker/pkg/stringid"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/types/network"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/opts"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
 )
 
 // CmdNetwork is the parent subcommand for all network commands

@@ -1,8 +1,8 @@
 package container
 
 import (
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/router"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/api/server/router/local"
+	"github.com/docker/docker/api/server/router"
+	"github.com/docker/docker/api/server/router/local"
 )
 
 // containerRouter is a router to talk with the container controller

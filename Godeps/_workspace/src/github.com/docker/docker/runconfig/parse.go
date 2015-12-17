@@ -6,15 +6,15 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/opts"
-	flag "github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mflag"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/mount"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/nat"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/parsers"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/signal"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/pkg/stringutils"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/docker/volume"
-	"github.com/runcom/docker-novolume-plugin/Godeps/_workspace/src/github.com/docker/go-units"
+	"github.com/docker/docker/opts"
+	flag "github.com/docker/docker/pkg/mflag"
+	"github.com/docker/docker/pkg/mount"
+	"github.com/docker/docker/pkg/nat"
+	"github.com/docker/docker/pkg/parsers"
+	"github.com/docker/docker/pkg/signal"
+	"github.com/docker/docker/pkg/stringutils"
+	"github.com/docker/docker/volume"
+	"github.com/docker/go-units"
 )
 
 var (
