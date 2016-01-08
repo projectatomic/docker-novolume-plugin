@@ -38,7 +38,12 @@ func debugRequestMiddleware(handler httputils.APIFunc) httputils.APIFunc {
 						if _, exists := postForm["password"]; exists {
 							postForm["password"] = "*****"
 						}
-						logrus.Debugf("form data: %q", postForm)
+						formStr, errMarshal := json.Marshal(postForm)
+						if errMarshal == nil {
+							logrus.Debugf("form data: %s", string(formStr))
+						} else {
+							logrus.Debugf("form data: %q", postForm)
+						}
 					}
 				}
 			}
@@ -51,6 +56,7 @@ func debugRequestMiddleware(handler httputils.APIFunc) httputils.APIFunc {
 // authorizationMiddleware perform authorization on the request.
 func (s *Server) authorizationMiddleware(handler httputils.APIFunc) httputils.APIFunc {
 	return func(ctx context.Context, w http.ResponseWriter, r *http.Request, vars map[string]string) error {
+		// FIXME: fill when authN gets in
 		// User and UserAuthNMethod are taken from AuthN plugins
 		// Currently tracked in https://github.com/docker/docker/pull/13994
 		user := ""

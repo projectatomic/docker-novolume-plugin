@@ -5,13 +5,14 @@ import (
 	"io"
 	"os"
 
-	"github.com/docker/docker/api/client/lib"
-	"github.com/docker/docker/api/types"
 	Cli "github.com/docker/docker/cli"
 	"github.com/docker/docker/pkg/jsonmessage"
 	"github.com/docker/docker/reference"
 	"github.com/docker/docker/registry"
-	"github.com/docker/docker/runconfig"
+	runconfigopts "github.com/docker/docker/runconfig/opts"
+	"github.com/docker/engine-api/client"
+	"github.com/docker/engine-api/types"
+	"github.com/docker/engine-api/types/container"
 )
 
 func (cli *DockerCli) pullImage(image string) error {
@@ -78,9 +79,7 @@ func newCIDFile(path string) (*cidFile, error) {
 	return &cidFile{path: path, file: f}, nil
 }
 
-func (cli *DockerCli) createContainer(config *runconfig.Config, hostConfig *runconfig.HostConfig, cidfile, name string) (*types.ContainerCreateResponse, error) {
-	mergedConfig := runconfig.MergeConfigs(config, hostConfig)
-
+func (cli *DockerCli) createContainer(config *container.Config, hostConfig *container.HostConfig, cidfile, name string) (*types.ContainerCreateResponse, error) {
 	var containerIDFile *cidFile
 	if cidfile != "" {
 		var err error
@@ -108,10 +107,10 @@ func (cli *DockerCli) createContainer(config *runconfig.Config, hostConfig *runc
 	}
 
 	//create the container
-	response, err := cli.client.ContainerCreate(mergedConfig, name)
+	response, err := cli.client.ContainerCreate(config, hostConfig, nil, name)
 	//if image not found try to pull it
 	if err != nil {
-		if lib.IsErrImageNotFound(err) {
+		if client.IsErrImageNotFound(err) {
 			fmt.Fprintf(cli.err, "Unable to find image '%s' locally\n", ref.String())
 
 			// we don't want to write to stdout anything apart from container.ID
@@ -125,7 +124,7 @@ func (cli *DockerCli) createContainer(config *runconfig.Config, hostConfig *runc
 			}
 			// Retry
 			var retryErr error
-			response, retryErr = cli.client.ContainerCreate(mergedConfig, name)
+			response, retryErr = cli.client.ContainerCreate(config, hostConfig, nil, name)
 			if retryErr != nil {
 				return nil, retryErr
 			}
@@ -157,7 +156,7 @@ func (cli *DockerCli) CmdCreate(args ...string) error {
 		flName = cmd.String([]string{"-name"}, "", "Assign a name to the container")
 	)
 
-	config, hostConfig, cmd, err := runconfig.Parse(cmd, args)
+	config, hostConfig, cmd, err := runconfigopts.Parse(cmd, args)
 	if err != nil {
 		cmd.ReportError(err.Error(), true)
 		os.Exit(1)

@@ -4,7 +4,7 @@ import (
 	"flag"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/runcom/dkauthz"
+	"github.com/docker/go-plugins-helpers/authz"
 )
 
 const (
@@ -29,7 +29,7 @@ func main() {
 	}
 
 	// TODO(runcom): parametrize this when the bin starts
-	h := dkauthz.NewHandler(novolume)
+	h := authz.NewHandler(novolume)
 	if err := h.ServeUnix("root", *flPluginSocket); err != nil {
 		logrus.Fatal(err)
 	}

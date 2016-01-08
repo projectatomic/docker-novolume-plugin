@@ -6,12 +6,12 @@ import (
 	"regexp"
 
 	dockerapi "github.com/docker/docker/api"
-	docker "github.com/docker/docker/api/client/lib"
-	"github.com/runcom/dkauthz"
+	dockerclient "github.com/docker/engine-api/client"
+	"github.com/docker/go-plugins-helpers/authz"
 )
 
 func newPlugin(dockerHost string) (*novolume, error) {
-	client, err := docker.NewClient(dockerHost, dockerapi.DefaultVersion.String(), nil, nil)
+	client, err := dockerclient.NewClient(dockerHost, dockerapi.DefaultVersion.String(), nil, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -23,10 +23,10 @@ var (
 )
 
 type novolume struct {
-	client *docker.Client
+	client *dockerclient.Client
 }
 
-func (p *novolume) AuthZReq(req dkauthz.Request) dkauthz.Response {
+func (p *novolume) AuthZReq(req authz.Request) authz.Response {
 	if req.RequestMethod == "POST" && startRegExp.MatchString(req.RequestURI) {
 		// this is deprecated in docker, remove once hostConfig is dropped to
 		// being available at start time
@@ -36,7 +36,7 @@ func (p *novolume) AuthZReq(req dkauthz.Request) dkauthz.Response {
 			}
 			vf := &vfrom{}
 			if err := json.NewDecoder(bytes.NewReader(req.RequestBody)).Decode(vf); err != nil {
-				return dkauthz.Response{Err: err.Error()}
+				return authz.Response{Err: err.Error()}
 			}
 			if len(vf.VolumesFrom) > 0 {
 				goto noallow
@@ -44,16 +44,16 @@ func (p *novolume) AuthZReq(req dkauthz.Request) dkauthz.Response {
 		}
 		res := startRegExp.FindStringSubmatch(req.RequestURI)
 		if len(res) < 1 {
-			return dkauthz.Response{Err: "unable to find container name"}
+			return authz.Response{Err: "unable to find container name"}
 		}
 
 		container, err := p.client.ContainerInspect(res[1])
 		if err != nil {
-			return dkauthz.Response{Err: err.Error()}
+			return authz.Response{Err: err.Error()}
 		}
 		image, _, err := p.client.ImageInspectWithRaw(container.Image, false)
 		if err != nil {
-			return dkauthz.Response{Err: err.Error()}
+			return authz.Response{Err: err.Error()}
 		}
 		if len(image.Config.Volumes) > 0 {
 			goto noallow
@@ -67,12 +67,12 @@ func (p *novolume) AuthZReq(req dkauthz.Request) dkauthz.Response {
 			goto noallow
 		}
 	}
-	return dkauthz.Response{Allow: true}
+	return authz.Response{Allow: true}
 
 noallow:
-	return dkauthz.Response{Msg: "volumes are not allowed"}
+	return authz.Response{Msg: "volumes are not allowed"}
 }
 
-func (p *novolume) AuthZRes(req dkauthz.Request) dkauthz.Response {
-	return dkauthz.Response{Allow: true}
+func (p *novolume) AuthZRes(req authz.Request) authz.Response {
+	return authz.Response{Allow: true}
 }
