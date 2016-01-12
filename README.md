@@ -1,4 +1,7 @@
 Docker No volumes Plugin
+
+When this plugin is installed, it will disallow creation of containers with local volumes.
+
 =
 Building
 -
