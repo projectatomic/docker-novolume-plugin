@@ -1,6 +1,8 @@
 Docker No volumes Plugin
 =
 When this plugin is installed, it will disallow creation of containers with local volumes.
+In order to use this plugin you need to be running at least Docker 1.10 which
+has support for authorization plugins.
 
 Building
 -
