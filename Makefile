@@ -13,4 +13,4 @@ install:
 	install -m 755 docker-novolume-plugin ${BINDIR}
 
 clean:
-	rm docker-novolume-plugin *~
+	rm -f docker-novolume-plugin
