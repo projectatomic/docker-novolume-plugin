@@ -38,7 +38,7 @@ $ systemctl enable docker-novolume-plugin
 ```
 Running
 -
-Specify `--authz-plugin=docker-novolume-plugin` in the `docker daemon` command line
+Specify `--authorization-plugin=docker-novolume-plugin` in the `docker daemon` command line
 flags (either in the systemd unit file or `/etc/sysconfig/docker` under `$OPTIONS`
 or when manually starting the daemon)
 The plugin must be started before `docker` (done automatically via systemd unit file).
