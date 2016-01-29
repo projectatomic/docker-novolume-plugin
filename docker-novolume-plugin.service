@@ -1,0 +1,12 @@
+[Unit]
+Description=Blocks Docker users from using Docker images with builtin volumes
+Documentation=https://github.com/projectatomic/docker-novolume-plugin
+Requires=docker.service
+Before=docker.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/docker-novolume-plugin
+
+[Install]
+WantedBy=multi-user.target
