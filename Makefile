@@ -9,6 +9,8 @@ all:
 install:
 	install -d -m 0755 ${LIBDIR}
 	install -m 644 systemd/docker-novolume-plugin.service ${LIBDIR}
+	install -d -m 0755 ${LIBDIR}
+	install -m 644 systemd/docker-novolume-plugin.socket ${LIBDIR}
 	install -d -m 0755 ${BINDIR}
 	install -m 755 docker-novolume-plugin ${BINDIR}
 

@@ -192,9 +192,13 @@ type Version struct {
 type Info struct {
 	ID                 string
 	Containers         int
+	ContainersRunning  int
+	ContainersPaused   int
+	ContainersStopped  int
 	Images             int
 	Driver             string
 	DriverStatus       [][2]string
+	SystemStatus       [][2]string
 	Plugins            PluginsInfo
 	MemoryLimit        bool
 	SwapLimit          bool
@@ -404,6 +408,7 @@ type NetworkCreate struct {
 	CheckDuplicate bool
 	Driver         string
 	IPAM           network.IPAM
+	Internal       bool
 	Options        map[string]string
 }
 
@@ -416,10 +421,11 @@ type NetworkCreateResponse struct {
 // NetworkConnect represents the data to be used to connect a container to the network
 type NetworkConnect struct {
 	Container      string
-	EndpointConfig *network.EndpointSettings `json:"endpoint_config"`
+	EndpointConfig *network.EndpointSettings `json:",omitempty"`
 }
 
 // NetworkDisconnect represents the data to be used to disconnect a container from the network
 type NetworkDisconnect struct {
 	Container string
+	Force     bool
 }

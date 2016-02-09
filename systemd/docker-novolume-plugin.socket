@@ -1,0 +1,10 @@
+[Unit]
+Description=Docker novolume plugin Socket for the API
+#PartOf=docker-novolume-plugin.service
+
+[Socket]
+ListenStream=/run/docker/plugins/docker-novolume-plugin.sock
+SocketMode=0700
+
+[Install]
+WantedBy=sockets.target

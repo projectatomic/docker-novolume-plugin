@@ -25,6 +25,9 @@ func (cli *DockerCli) CmdInfo(args ...string) error {
 	}
 
 	fmt.Fprintf(cli.out, "Containers: %d\n", info.Containers)
+	fmt.Fprintf(cli.out, " Running: %d\n", info.ContainersRunning)
+	fmt.Fprintf(cli.out, " Paused: %d\n", info.ContainersPaused)
+	fmt.Fprintf(cli.out, " Stopped: %d\n", info.ContainersStopped)
 	fmt.Fprintf(cli.out, "Images: %d\n", info.Images)
 	ioutils.FprintfIfNotEmpty(cli.out, "Server Version: %s\n", info.ServerVersion)
 	ioutils.FprintfIfNotEmpty(cli.out, "Storage Driver: %s\n", info.Driver)
@@ -38,6 +41,11 @@ func (cli *DockerCli) CmdInfo(args ...string) error {
 			}
 		}
 
+	}
+	if info.SystemStatus != nil {
+		for _, pair := range info.SystemStatus {
+			fmt.Fprintf(cli.out, "%s: %s\n", pair[0], pair[1])
+		}
 	}
 	ioutils.FprintfIfNotEmpty(cli.out, "Execution Driver: %s\n", info.ExecutionDriver)
 	ioutils.FprintfIfNotEmpty(cli.out, "Logging Driver: %s\n", info.LoggingDriver)
