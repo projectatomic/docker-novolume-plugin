@@ -52,8 +52,8 @@ Future
 Docker 1.11 will come with an Authentication infrastructure. Authorization plugins like
 this one can leverage Authentication receiving the `username|group` of the user actually
 doing the action in order to take more fine grained decisions.
-We basically want to allow a particular user, say `dwalsh`, to run containers with
-volumes while blocking everyone in the `qa` groups. We'll bring this behavior introducing
+We basically want to allow a particular user, say `dwalsh`, or group to run containers with
+volumes while blocking everyone else. We'll bring this behavior introducing
 a configuration file under `/etc/docker/plugins/auth/docker-novolume-plugin.conf` with
 the following syntax (for the example above):
 ```toml
