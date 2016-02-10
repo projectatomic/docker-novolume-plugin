@@ -47,6 +47,20 @@ If you're not using the systemd unit file:
 $ docker-novolume-plugin &
 ```
 Just restart `docker` and you're good to go!
+Future
+-
+Docker 1.11 will come with an Authentication infrastructure. Authorization plugins like
+this one can leverage Authentication receiving the `username|group` of the user actually
+doing the action in order to take more fine grained decisions.
+We basically want to allow a particular user, say `dwalsh`, to run containers with
+volumes while blocking everyone in the `qa` groups. We'll bring this behavior introducing
+a configuration file under `/etc/docker/plugins/auth/docker-novolume-plugin.conf` with
+the following syntax (for the example above):
+```toml
+[docker-novolume-plugin]
+  allow-user = ["dwalsh"]
+  allow-group = []
+```
 License
 -
 MIT
