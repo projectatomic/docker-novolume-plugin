@@ -82,15 +82,16 @@ func (cli *DockerCli) CmdRun(args ...string) error {
 		ErrConflictDetachAutoRemove           = fmt.Errorf("Conflicting options: --rm and -d")
 	)
 
-	config, hostConfig, cmd, err := runconfigopts.Parse(cmd, args)
+	config, hostConfig, networkingConfig, cmd, err := runconfigopts.Parse(cmd, args)
+
 	// just in case the Parse does not exit
 	if err != nil {
 		cmd.ReportError(err.Error(), true)
 		os.Exit(125)
 	}
 
-	if hostConfig.OomKillDisable && hostConfig.Memory == 0 {
-		fmt.Fprintf(cli.err, "WARNING: Dangerous only disable the OOM Killer on containers but not set the '-m/--memory' option\n")
+	if hostConfig.OomKillDisable != nil && *hostConfig.OomKillDisable && hostConfig.Memory == 0 {
+		fmt.Fprintf(cli.err, "WARNING: Disabling the OOM killer on containers without setting a '-m/--memory' limit may be dangerous.\n")
 	}
 
 	if len(hostConfig.DNS) > 0 {
@@ -145,7 +146,7 @@ func (cli *DockerCli) CmdRun(args ...string) error {
 		hostConfig.ConsoleSize[0], hostConfig.ConsoleSize[1] = cli.getTtySize()
 	}
 
-	createResponse, err := cli.createContainer(config, hostConfig, hostConfig.ContainerIDFile, *flName)
+	createResponse, err := cli.createContainer(config, hostConfig, networkingConfig, hostConfig.ContainerIDFile, *flName)
 	if err != nil {
 		cmd.ReportError(err.Error(), true)
 		return runStartContainerErr(err)
@@ -205,6 +206,12 @@ func (cli *DockerCli) CmdRun(args ...string) error {
 		resp, err := cli.client.ContainerAttach(options)
 		if err != nil {
 			return err
+		}
+		if in != nil && config.Tty {
+			if err := cli.setRawTerminal(); err != nil {
+				return err
+			}
+			defer cli.restoreTerminal(in)
 		}
 		errCh = promise.Go(func() error {
 			return cli.holdHijackedConnection(config.Tty, in, out, stderr, resp)

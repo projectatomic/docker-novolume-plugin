@@ -2,7 +2,8 @@
 Description=Docker No volumes authZ Plugin
 Documentation=https://github.com/runcom/docker-novolume-plugin
 Before=docker.service
-Requires=docker.service
+After=network.target docker-novolume-plugin.socket
+Requires=docker-novolume-plugin.socket docker.service
 
 [Service]
 # might need to set flags...

@@ -92,7 +92,7 @@ func (n *networkRouter) postNetworkCreate(ctx context.Context, w http.ResponseWr
 		warning = fmt.Sprintf("Network with name %s (id : %s) already exists", nw.Name(), nw.ID())
 	}
 
-	nw, err = n.backend.CreateNetwork(create.Name, create.Driver, create.IPAM, create.Options)
+	nw, err = n.backend.CreateNetwork(create.Name, create.Driver, create.IPAM, create.Options, create.Internal)
 	if err != nil {
 		return err
 	}
@@ -122,7 +122,7 @@ func (n *networkRouter) postNetworkConnect(ctx context.Context, w http.ResponseW
 		return err
 	}
 
-	return n.backend.ConnectContainerToNetwork(connect.Container, nw.Name())
+	return n.backend.ConnectContainerToNetwork(connect.Container, nw.Name(), connect.EndpointConfig)
 }
 
 func (n *networkRouter) postNetworkDisconnect(ctx context.Context, w http.ResponseWriter, r *http.Request, vars map[string]string) error {
@@ -144,7 +144,7 @@ func (n *networkRouter) postNetworkDisconnect(ctx context.Context, w http.Respon
 		return err
 	}
 
-	return n.backend.DisconnectContainerFromNetwork(disconnect.Container, nw)
+	return n.backend.DisconnectContainerFromNetwork(disconnect.Container, nw, disconnect.Force)
 }
 
 func (n *networkRouter) deleteNetwork(ctx context.Context, w http.ResponseWriter, r *http.Request, vars map[string]string) error {
@@ -182,12 +182,19 @@ func buildNetworkResource(nw libnetwork.Network) *types.NetworkResource {
 }
 
 func buildIpamResources(r *types.NetworkResource, nw libnetwork.Network) {
-	id, ipv4conf, ipv6conf := nw.Info().IpamConfig()
+	id, opts, ipv4conf, ipv6conf := nw.Info().IpamConfig()
+
+	ipv4Info, ipv6Info := nw.Info().IpamInfo()
 
 	r.IPAM.Driver = id
 
+	r.IPAM.Options = opts
+
 	r.IPAM.Config = []network.IPAMConfig{}
 	for _, ip4 := range ipv4conf {
+		if ip4.PreferredPool == "" {
+			continue
+		}
 		iData := network.IPAMConfig{}
 		iData.Subnet = ip4.PreferredPool
 		iData.IPRange = ip4.SubPool
@@ -196,13 +203,36 @@ func buildIpamResources(r *types.NetworkResource, nw libnetwork.Network) {
 		r.IPAM.Config = append(r.IPAM.Config, iData)
 	}
 
+	if len(r.IPAM.Config) == 0 {
+		for _, ip4Info := range ipv4Info {
+			iData := network.IPAMConfig{}
+			iData.Subnet = ip4Info.IPAMData.Pool.String()
+			iData.Gateway = ip4Info.IPAMData.Gateway.String()
+			r.IPAM.Config = append(r.IPAM.Config, iData)
+		}
+	}
+
+	hasIpv6Conf := false
 	for _, ip6 := range ipv6conf {
+		if ip6.PreferredPool == "" {
+			continue
+		}
+		hasIpv6Conf = true
 		iData := network.IPAMConfig{}
 		iData.Subnet = ip6.PreferredPool
 		iData.IPRange = ip6.SubPool
 		iData.Gateway = ip6.Gateway
 		iData.AuxAddress = ip6.AuxAddresses
 		r.IPAM.Config = append(r.IPAM.Config, iData)
+	}
+
+	if !hasIpv6Conf {
+		for _, ip6Info := range ipv6Info {
+			iData := network.IPAMConfig{}
+			iData.Subnet = ip6Info.IPAMData.Pool.String()
+			iData.Gateway = ip6Info.IPAMData.Gateway.String()
+			r.IPAM.Config = append(r.IPAM.Config, iData)
+		}
 	}
 }
 
