@@ -39,14 +39,38 @@ $ systemctl enable docker-novolume-plugin
 Running
 -
 Specify `--authorization-plugin=docker-novolume-plugin` in the `docker daemon` command line
-flags (either in the systemd unit file or `/etc/sysconfig/docker` under `$OPTIONS`
-or when manually starting the daemon)
+flags (either in the systemd unit file or in `/etc/sysconfig/docker` under `$OPTIONS`
+or when manually starting the daemon).
 The plugin must be started before `docker` (done automatically via systemd unit file).
 If you're not using the systemd unit file:
 ```sh
 $ docker-novolume-plugin &
 ```
 Just restart `docker` and you're good to go!
+Systemd socket activation
+-
+The plugin can be socket activated by systemd. You just have to basically use the file provided
+under `systemd/` (or installing via `make install`). This ensures the plugin gets activated
+if for some reasons it's down.
+How to test
+-
+Ensure at least the systemd `socket` is active:
+```
+$ sudo systemctl status docker-novolume-plugin.socket
+● docker-novolume-plugin.socket - Docker novolume plugin Socket for the API
+   Loaded: loaded (/usr/lib/systemd/system/docker-novolume-plugin.socket; enabled; vendor preset: disabled)
+   Active: active (running) since Wed 2016-02-10 14:42:55 CET; 4h 51min ago
+   Listen: /run/docker/plugins/docker-novolume-plugin.sock (Stream)
+
+Feb 10 14:42:55 fedora systemd[1]: Listening on Docker novolume plugin Socket for the API.
+Feb 10 14:42:55 fedora systemd[1]: Starting Docker novolume plugin Socket for the API.
+```
+Try to run a container with a self provisioned volume:
+```
+$ docker run -v /test busybox
+docker: Error response from daemon: authorization denied by plugin docker-novolume-plugin: volumes are not allowed.
+```
+Watch it failing.
 Future
 -
 Docker 1.11 will come with an Authentication infrastructure. Authorization plugins like
