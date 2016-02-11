@@ -8,6 +8,11 @@
 			"Rev": "f7f79f729e0fbe2fcc061db48a9ba0263f588252"
 		},
 		{
+			"ImportPath": "github.com/coreos/go-systemd/activation",
+			"Comment": "v4-42-g7b2428f",
+			"Rev": "7b2428fec40033549c68f54e26e89e7ca9a9ce31"
+		},
+		{
 			"ImportPath": "github.com/docker/docker/api",
 			"Comment": "v1.10.0",
 			"Rev": "590d5108bbdaabb05af590f76c9757daceb6d02e"
@@ -63,8 +68,12 @@
 			"Rev": "082e382836465660fe3fd21de06624a205f986eb"
 		},
 		{
+			"ImportPath": "github.com/docker/go-plugins-helpers/authorization",
+			"Rev": "43a6e8138314c27ab25fa197c676e1970d5869e1"
+		},
+		{
 			"ImportPath": "github.com/docker/go-plugins-helpers/sdk",
-			"Rev": "a082c3ef589256168b859d37563acb6d2e779fdd"
+			"Rev": "43a6e8138314c27ab25fa197c676e1970d5869e1"
 		},
 		{
 			"ImportPath": "github.com/docker/go-units",
