@@ -4,7 +4,6 @@ Description=Docker novolume plugin Socket for the API
 
 [Socket]
 ListenStream=/run/docker/plugins/docker-novolume-plugin.sock
-SocketMode=0700
 
 [Install]
 WantedBy=sockets.target
