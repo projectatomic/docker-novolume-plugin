@@ -21,7 +21,7 @@ install:
 	install -m 644 systemd/docker-novolume-plugin.socket ${LIBDIR}
 	install -d -m 0755 ${BINDIR}
 	install -m 755 docker-novolume-plugin ${BINDIR}
-	install -m 644 docker-novolume-plugin.1 ${MANINSTALLDIR}/man1/
+	install -m 644 docker-novolume-plugin.1 ${MANINSTALLDIR}/man8/
 
 clean:
 	rm -f docker-novolume-plugin
