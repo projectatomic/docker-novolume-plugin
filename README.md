@@ -54,23 +54,21 @@ under `systemd/` (or installing via `make install`). This ensures the plugin get
 if for some reasons it's down.
 How to test
 -
-Ensure at least the systemd `socket` is active:
+```bash
+$ sudo dnf install docker-novolume-plugin
+$ sudo systemctl start docker-novolume-plugin
+# edit /etc/sysconfig/docker and append --authorization-plugin=docker-novolume-plugin to OPTIONS
+$ sudo systemctl restart docker
+$ docker run -v /:/test fedora sh  # works
+$ docker run -v /test fedora sh # blocked
+$ docker volume create --name test
+$ docker run -v test:/test fedora sh # blocked
+$ docker build -t testimage - <<EOF
+FROM fedora
+VOLUME foo
+EOF
+$ docker run testimage sh # blocked
 ```
-$ sudo systemctl status docker-novolume-plugin.socket
-● docker-novolume-plugin.socket - Docker novolume plugin Socket for the API
-   Loaded: loaded (/usr/lib/systemd/system/docker-novolume-plugin.socket; enabled; vendor preset: disabled)
-   Active: active (running) since Wed 2016-02-10 14:42:55 CET; 4h 51min ago
-   Listen: /run/docker/plugins/docker-novolume-plugin.sock (Stream)
-
-Feb 10 14:42:55 fedora systemd[1]: Listening on Docker novolume plugin Socket for the API.
-Feb 10 14:42:55 fedora systemd[1]: Starting Docker novolume plugin Socket for the API.
-```
-Try to run a container with a self provisioned volume:
-```
-$ docker run -v /test busybox
-docker: Error response from daemon: authorization denied by plugin docker-novolume-plugin: volumes are not allowed.
-```
-Watch it failing.
 Future
 -
 Docker 1.11 will come with an Authentication infrastructure. Authorization plugins like
