@@ -13,21 +13,19 @@ const (
 )
 
 var (
-	flDockerHost = flag.String("host", defaultDockerHost, "Docker host the plugin connects to when inspecting")
-	// TODO(runcom): add tls option to connect to docker?
-	// TODO(runcom): add plugin tls option (need to learn more...)
-	// TODO(runcom): add config tls option based on Dan's suggestion to block based on AuthN
+	flDockerHost = flag.String("host", defaultDockerHost, "Specifies the host where to contact the docker daemon")
+	flCertPath   = flag.String("cert-path", "", "Certificates path to connect to Docker (cert.pem, key.pem)")
+	flTLSVerify  = flag.Bool("tls-verify", false, "Whether to verify certificates or not")
 )
 
 func main() {
 	flag.Parse()
 
-	novolume, err := newPlugin(*flDockerHost)
+	novolume, err := newPlugin(*flDockerHost, *flCertPath, *flTLSVerify)
 	if err != nil {
 		logrus.Fatal(err)
 	}
 
-	// TODO(runcom): parametrize this when the bin starts
 	h := authorization.NewHandler(novolume)
 
 	if err = h.ServeUnix("root", pluginSocket); err != nil {

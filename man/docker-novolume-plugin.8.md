@@ -6,7 +6,9 @@ docker-novolume-plugin - Blocks self provisioned volumes
 
 # SYNOPSIS
 **docker-novolume-plugin**
+[**--cert-path**=[=*""*]]
 [**--host**=[=*unix:///var/run/docker.sock*]]
+[**--tls-verify**=[=*false*]]
 
 # DESCRIPTION
 When a volume in provisioned via the VOLUME instruction in a Dockerfile or via
@@ -26,8 +28,12 @@ The only thing allowed will be just bind mounts.
 
 # OPTIONS
 
+**--cert-path**=""
+  Certificates path to connect to Docker (cert.pem, key.pem)
 **--host**="unix:///var/run/docker.sock"
   Specifies the host where to contact the docker daemon.
+**--tls-verify**="false"
+  Whether to verify certificates or not
 
 # AUTHORS
 Antonio Murdaca <runcom@redhat.com>

@@ -2,7 +2,11 @@ package main
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
+	"fmt"
+	"net/http"
+	"path/filepath"
 	"regexp"
 
 	dockerapi "github.com/docker/docker/api"
@@ -10,8 +14,24 @@ import (
 	"github.com/docker/go-plugins-helpers/authorization"
 )
 
-func newPlugin(dockerHost string) (*novolume, error) {
-	client, err := dockerclient.NewClient(dockerHost, dockerapi.DefaultVersion.String(), nil, nil)
+func newPlugin(dockerHost, certPath string, tlsVerify bool) (*novolume, error) {
+	var transport *http.Transport
+	if certPath != "" {
+		tlsc := &tls.Config{}
+
+		cert, err := tls.LoadX509KeyPair(filepath.Join(certPath, "cert.pem"), filepath.Join(certPath, "key.pem"))
+		if err != nil {
+			return nil, fmt.Errorf("Error loading x509 key pair: %s", err)
+		}
+
+		tlsc.Certificates = append(tlsc.Certificates, cert)
+		tlsc.InsecureSkipVerify = !tlsVerify
+		transport = &http.Transport{
+			TLSClientConfig: tlsc,
+		}
+	}
+
+	client, err := dockerclient.NewClient(dockerHost, dockerapi.DefaultVersion.String(), transport, nil)
 	if err != nil {
 		return nil, err
 	}
