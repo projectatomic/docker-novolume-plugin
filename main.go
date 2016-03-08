@@ -28,7 +28,7 @@ func main() {
 
 	h := authorization.NewHandler(novolume)
 
-	if err = h.ServeUnix("root", pluginSocket); err != nil {
+	if err := h.ServeUnix("root", pluginSocket); err != nil {
 		logrus.Fatal(err)
 	}
 }
