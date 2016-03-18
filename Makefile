@@ -2,7 +2,7 @@
 export GOPATH:=$(CURDIR)/Godeps/_workspace:$(GOPATH)
 
 LIBDIR=${DESTDIR}/lib/systemd/system
-BINDIR=${DESTDIR}/usr/lib/docker/
+BINDIR=${DESTDIR}/usr/libexec/docker/
 PREFIX ?= ${DESTDIR}/usr
 MANINSTALLDIR=${PREFIX}/share/man
 
