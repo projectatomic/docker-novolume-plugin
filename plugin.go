@@ -66,20 +66,26 @@ func (p *novolume) AuthZReq(req authorization.Request) authorization.Response {
 		if len(res) < 1 {
 			return authorization.Response{Err: "unable to find container name"}
 		}
-
 		container, err := p.client.ContainerInspect(res[1])
 		if err != nil {
 			return authorization.Response{Err: err.Error()}
+		}
+		bindDests := []string{}
+		for _, m := range container.Mounts {
+			if m.Driver != "" {
+				goto noallow
+			}
+			bindDests = append(bindDests, m.Destination)
 		}
 		image, _, err := p.client.ImageInspectWithRaw(container.Image, false)
 		if err != nil {
 			return authorization.Response{Err: err.Error()}
 		}
-		if len(image.Config.Volumes) > 0 {
+		if len(bindDests) == 0 && len(image.Config.Volumes) > 0 {
 			goto noallow
 		}
-		for _, m := range container.Mounts {
-			if m.Driver != "" {
+		for _, bd := range bindDests {
+			if _, ok := image.Config.Volumes[bd]; !ok {
 				goto noallow
 			}
 		}
