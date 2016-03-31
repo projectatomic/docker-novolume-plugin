@@ -84,14 +84,17 @@ func (p *novolume) AuthZReq(req authorization.Request) authorization.Response {
 		if len(bindDests) == 0 && len(image.Config.Volumes) > 0 {
 			goto noallow
 		}
-		for _, bd := range bindDests {
-			if _, ok := image.Config.Volumes[bd]; !ok {
-				goto noallow
+		if len(image.Config.Volumes) > 0 {
+			for _, bd := range bindDests {
+				if _, ok := image.Config.Volumes[bd]; !ok {
+					goto noallow
+				}
 			}
 		}
 		if len(container.HostConfig.VolumesFrom) > 0 {
 			goto noallow
 		}
+		// TODO(runcom): FROM scratch ?!?!
 	}
 	return authorization.Response{Allow: true}
 
