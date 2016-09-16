@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 	"path/filepath"
 	"regexp"
 
@@ -47,7 +48,8 @@ type novolume struct {
 }
 
 func (p *novolume) AuthZReq(req authorization.Request) authorization.Response {
-	if req.RequestMethod == "POST" && startRegExp.MatchString(req.RequestURI) {
+	ruri := url.QueryEscape(req.RequestURI)
+	if req.RequestMethod == "POST" && startRegExp.MatchString(ruri) {
 		// this is deprecated in docker, remove once hostConfig is dropped to
 		// being available at start time
 		if req.RequestBody != nil {
@@ -62,7 +64,7 @@ func (p *novolume) AuthZReq(req authorization.Request) authorization.Response {
 				goto noallow
 			}
 		}
-		res := startRegExp.FindStringSubmatch(req.RequestURI)
+		res := startRegExp.FindStringSubmatch(ruri)
 		if len(res) < 1 {
 			return authorization.Response{Err: "unable to find container name"}
 		}
