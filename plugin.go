@@ -39,7 +39,7 @@ func newPlugin(dockerHost, certPath string, tlsVerify bool) (*novolume, error) {
 }
 
 var (
-	startRegExp = regexp.MustCompile(`/containers/(.*)/start$`)
+	startRegExp = regexp.MustCompile(`/containers/(.*)/start`)
 )
 
 type novolume struct {
