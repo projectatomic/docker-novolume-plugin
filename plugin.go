@@ -48,7 +48,10 @@ type novolume struct {
 }
 
 func (p *novolume) AuthZReq(req authorization.Request) authorization.Response {
-	ruri := url.QueryEscape(req.RequestURI)
+	ruri, err := url.QueryUnescape(req.RequestURI)
+	if err != nil {
+		return authorization.Response{Err: err.Error()}
+	}
 	if req.RequestMethod == "POST" && startRegExp.MatchString(ruri) {
 		// this is deprecated in docker, remove once hostConfig is dropped to
 		// being available at start time
