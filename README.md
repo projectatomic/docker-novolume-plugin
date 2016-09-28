@@ -41,12 +41,18 @@ Running
 Specify `--authorization-plugin=docker-novolume-plugin` in the `docker daemon` command line
 flags (either in the systemd unit file or in `/etc/sysconfig/docker` under `$OPTIONS`
 or when manually starting the daemon).
-The plugin must be started before `docker` (done automatically via systemd unit file).
-If you're not using the systemd unit file:
+The plugin must be started before `docker`.  This is done automatically via systemd unit file on boot, or you can start it manually with:
+```sh
+$ systemctl start docker-novolume-plugin 
+```
+
+If you're not using the systemd unit, it can be started with:
 ```sh
 $ docker-novolume-plugin &
 ```
-Just restart `docker` and you're good to go!
+
+Then, restart `docker` and you're good to go!
+
 Systemd socket activation
 -
 The plugin can be socket activated by systemd. You just have to basically use the file provided
