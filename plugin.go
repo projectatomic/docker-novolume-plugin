@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
@@ -16,7 +17,7 @@ import (
 )
 
 func newPlugin(dockerHost, certPath string, tlsVerify bool) (*novolume, error) {
-	var transport *http.Transport
+	var httpClient *http.Client
 	if certPath != "" {
 		tlsc := &tls.Config{}
 
@@ -27,12 +28,12 @@ func newPlugin(dockerHost, certPath string, tlsVerify bool) (*novolume, error) {
 
 		tlsc.Certificates = append(tlsc.Certificates, cert)
 		tlsc.InsecureSkipVerify = !tlsVerify
-		transport = &http.Transport{
+		httpClient = &http.Client{Transport: &http.Transport{
 			TLSClientConfig: tlsc,
-		}
+		}}
 	}
 
-	client, err := dockerclient.NewClient(dockerHost, dockerapi.DefaultVersion.String(), transport, nil)
+	client, err := dockerclient.NewClient(dockerHost, dockerapi.DefaultVersion, httpClient, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -71,7 +72,7 @@ func (p *novolume) AuthZReq(req authorization.Request) authorization.Response {
 		if len(res) < 1 {
 			return authorization.Response{Err: "unable to find container name"}
 		}
-		container, err := p.client.ContainerInspect(res[1])
+		container, err := p.client.ContainerInspect(context.Background(), res[1])
 		if err != nil {
 			return authorization.Response{Err: err.Error()}
 		}
@@ -82,7 +83,7 @@ func (p *novolume) AuthZReq(req authorization.Request) authorization.Response {
 			}
 			bindDests = append(bindDests, m.Destination)
 		}
-		image, _, err := p.client.ImageInspectWithRaw(container.Image, false)
+		image, _, err := p.client.ImageInspectWithRaw(context.Background(), container.Image, false)
 		if err != nil {
 			return authorization.Response{Err: err.Error()}
 		}
