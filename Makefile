@@ -1,5 +1,4 @@
 .PHONY: all binary man install clean
-export GOPATH:=$(CURDIR)/Godeps/_workspace:$(GOPATH)
 
 LIBDIR=${DESTDIR}/lib/systemd/system
 BINDIR=${DESTDIR}/usr/libexec/docker/
